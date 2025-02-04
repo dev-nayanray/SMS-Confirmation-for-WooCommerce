@@ -81,7 +81,7 @@ Fixes critical text domain and logging issues. Update is **recommended**.
 ## 📞 Support  
 
 For support, please contact:  
-- 📩 [SMS.net.bd Support](https://www.sms.net.bd/support)  
+- 📩 [Nayan Ray Support](https://dev-nayanray.github.io/)  
 - 💬 [WordPress.org Support Forum](https://wordpress.org/support/plugin/sms-confirmation-for-woocommerce)  
 
 ---
