@@ -61,20 +61,11 @@ Yes! The plugin uses **WooCommerce’s built-in logging system** for debugging.
 
 ## 📜 Changelog  
 
-### v1.0.1  
-- 🛠 Fixed text domain mismatch issue.  
-- 🔧 Improved phone number formatting.  
-- 📝 Enhanced error handling with WooCommerce logging.  
 
 ### v1.0.0  
 - 🚀 Initial release.  
 
----
 
-## ⚡ Upgrade Notice  
-
-### v1.0.1  
-Fixes critical text domain and logging issues. Update is **recommended**.  
 
 ---
 
