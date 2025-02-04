@@ -55,7 +55,9 @@ Yes! The plugin uses **WooCommerce’s built-in logging system** for debugging.
 ## 📸 Screenshots  
 
 1. **Admin Settings Panel:** Configure SMS API key.
-![image](https://github.com/user-attachments/assets/13ff1d08-6110-4f78-a36a-16863a9b10d4)
+
+![image](https://github.com/user-attachments/assets/b0022488-cb55-4e5f-98ac-a613783987c3)
+
   
 2. **Order List View:** Check SMS status (Sent/Not Sent).  
 ![image](https://github.com/user-attachments/assets/5007ac02-3b05-4c7f-9c27-15f316b19980)
