@@ -1,61 +1,94 @@
-# WooCommerce-SMS-Confirmation
-WooCommerce SMS Confirmation
-=== WooCommerce SMS Confirmation ===
-Contributors: NayanRay
-Tags: WooCommerce, SMS, Order Confirmation, SMS Notification, WooCommerce SMS
-Requires at least: 5.0
-Tested up to: 6.4
-Requires PHP: 7.2
-Stable tag: 1.0
-License: GPL-2.0+
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+# SMS Confirmation for WooCommerce
 
-Send SMS confirmations to customers when their WooCommerce order is completed using SMS.net.bd API.
+**Contributors:** nayansms  
+**Tags:** WooCommerce, SMS, Order Confirmation, Customer Notification, SMS Alert  
+**Requires at least:** 5.0  
+**Tested up to:** 6.4  
+**Requires PHP:** 7.4  
+**Stable tag:** 1.0.1  
+**License:** GPL-2.0+  
+**License URI:** [GNU GPL v2.0+](https://www.gnu.org/licenses/gpl-2.0.html)  
 
-== Description ==
+## 📢 Description  
 
-WooCommerce SMS Confirmation is a lightweight and easy-to-use plugin that sends an SMS notification to customers when their order status changes to "Completed." This plugin integrates with SMS.net.bd API to deliver real-time order updates.
+**SMS Confirmation for WooCommerce** is a lightweight plugin that integrates with WooCommerce to send **SMS notifications** when an order is marked as **Completed**. This ensures real-time order updates and improves customer engagement.  
 
-**Features:**
+✅ **Features:**  
+- 📩 **Automatic SMS notifications** on **order completion**.  
+- 🔑 Uses **SMS.net.bd API** for SMS delivery.  
+- ⚙️ **Custom API key settings** via WordPress admin panel.  
+- ✅ **Order status tracking** with SMS sent/not sent indicators.  
+- 📞 **Auto-formats Bangladeshi phone numbers** for SMS compatibility.  
+- 🛠 **WooCommerce logging** for debugging and tracking.  
 
-- Automatically send SMS notifications when an order is completed.
-- Customizable SMS message template.
-- Manage API settings directly from the WordPress dashboard.
-- View SMS sending status for completed orders.
-- Simple and effective integration with WooCommerce.
+🔹 **Note:** An active account and API key from [SMS.net.bd](https://www.sms.net.bd/) is required.
 
-== Installation ==
+---
 
-1. Upload the `woocommerce-sms-confirmation` folder to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
-3. Go to **Settings > SMS Confirmation** to configure your API key.
-4. Ensure you have a valid SMS.net.bd API key to send SMS notifications.
+## 🛠 Installation  
 
-== Frequently Asked Questions ==
+1. Download the plugin ZIP file.  
+2. Go to **Plugins > Add New** in WordPress Admin.  
+3. Click **Upload Plugin**, select the ZIP file, and install it.  
+4. Activate the plugin.  
+5. Navigate to **Settings > SMS Confirmation** and enter your **SMS API key**.  
+6. Orders marked as **Completed** will now trigger an **SMS notification**.  
 
-= How do I configure the API settings? =
-Go to **Settings > SMS Confirmation** in your WordPress admin panel and enter your SMS.net.bd API key.
+---
 
-= Does this plugin work with other SMS providers? =
-Currently, this plugin supports only SMS.net.bd API. Future updates may include support for additional providers.
+## ❓ FAQ  
 
-= Will this plugin work with custom WooCommerce order statuses? =
-No, the plugin is designed to trigger SMS notifications only when an order status is marked as "Completed."
+### Does this plugin work with any SMS provider?  
+No, this plugin is specifically built for **SMS.net.bd**.  
 
-== Screenshots ==
+### Can I customize the SMS message content?  
+Not yet, but we plan to add message customization in future updates.  
 
-1. Plugin settings page where you can enter your API key.
-2. List of completed orders with SMS status.
+### Will this plugin work outside Bangladesh?  
+It is optimized for **Bangladeshi phone numbers**. Other countries may require modifications.  
 
-== Changelog ==
+### Does this plugin support logging?  
+Yes! The plugin uses **WooCommerce’s built-in logging system** for debugging.  
 
-= 1.0 =
-* Initial release.
-* Sends SMS notifications for completed WooCommerce orders.
-* Admin settings page for API configuration.
+---
 
-== Upgrade Notice ==
+## 📸 Screenshots  
 
-= 1.0 =
-Initial release with basic SMS notification functionality.
+1. **Admin Settings Panel:** Configure SMS API key.  
+2. **Order List View:** Check SMS status (Sent/Not Sent).  
 
+---
+
+## 📜 Changelog  
+
+### v1.0.1  
+- 🛠 Fixed text domain mismatch issue.  
+- 🔧 Improved phone number formatting.  
+- 📝 Enhanced error handling with WooCommerce logging.  
+
+### v1.0.0  
+- 🚀 Initial release.  
+
+---
+
+## ⚡ Upgrade Notice  
+
+### v1.0.1  
+Fixes critical text domain and logging issues. Update is **recommended**.  
+
+---
+
+## 📞 Support  
+
+For support, please contact:  
+- 📩 [SMS.net.bd Support](https://www.sms.net.bd/support)  
+- 💬 [WordPress.org Support Forum](https://wordpress.org/support/plugin/sms-confirmation-for-woocommerce)  
+
+---
+
+## 📜 License  
+
+This plugin is **open-source** and released under the **GPL-2.0+** license.  
+📖 Read more: [GNU GPL v2.0+](https://www.gnu.org/licenses/gpl-2.0.html).  
+
+---

@@ -1,38 +1,53 @@
 <?php
+
 /**
- * Plugin Name: WooCommerce SMS Confirmation
+ * Plugin Name: SMS Confirmation for WooCommerce
  * Description: Sends an SMS confirmation to the customer when an order is completed using SMS.net.bd.
- * Version: 1.0
+ * Version: 1.0.0
  * Author: Nayan Ray
+ * Text Domain: sms-confirmation-for-woocommerce
+ * Domain Path: /languages
+ * License: GPL-2.0+
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit;  
+if ( ! defined( 'ABSPATH' ) ) exit;
 
- 
+// Add admin menu
 add_action('admin_menu', 'wcsms_add_admin_menu');
 add_action('admin_init', 'wcsms_settings_init');
 
 function wcsms_add_admin_menu() {
-    add_options_page('WooCommerce SMS Confirmation', 'SMS Confirmation', 'manage_options', 'wcsms_settings', 'wcsms_settings_page');
+    add_options_page(
+        __('SMS Confirmation for WooCommerce', 'sms-confirmation-for-woocommerce'),
+        __('SMS Confirmation', 'sms-confirmation-for-woocommerce'),
+        'manage_options',
+        'wcsms_settings',
+        'wcsms_settings_page'
+    );
 }
 
 function wcsms_settings_init() {
-    register_setting('wcsms_plugin', 'wcsms_settings');
+    register_setting('wcsms_plugin', 'wcsms_settings', 'wcsms_sanitize_settings');
 
     add_settings_section(
-        'wcsms_plugin_section', 
-        __('SMS API Settings', 'wcsms'), 
-        null, 
+        'wcsms_plugin_section',
+        __('SMS API Settings', 'sms-confirmation-for-woocommerce'),
+        null,
         'wcsms_plugin'
     );
 
     add_settings_field(
-        'wcsms_api_key', 
-        __('API Key', 'wcsms'), 
-        'wcsms_api_key_render', 
-        'wcsms_plugin', 
+        'wcsms_api_key',
+        __('API Key', 'sms-confirmation-for-woocommerce'),
+        'wcsms_api_key_render',
+        'wcsms_plugin',
         'wcsms_plugin_section'
     );
+}
+
+function wcsms_sanitize_settings($input) {
+    return array_map('sanitize_text_field', $input);
 }
 
 function wcsms_api_key_render() {
@@ -47,82 +62,81 @@ function wcsms_settings_page() {
     submit_button();
     echo '</form>';
 
-    
-    echo '<h2>Completed Orders with SMS Status</h2>';
-    $args = [
-        'status' => 'completed',
-        'limit' => -1
-    ];
-    $orders = wc_get_orders($args);
+    echo '<h2>' . __('Completed Orders with SMS Status', 'sms-confirmation-for-woocommerce') . '</h2>';
+    $orders = wc_get_orders(['status' => 'completed', 'limit' => -1]);
 
-    echo '<table style="width:100%; border-collapse: collapse;">';
-    echo '<tr><th style="border: 1px solid #ccc; padding: 8px;">Customer Name</th><th style="border: 1px solid #ccc; padding: 8px;">Phone Number</th><th style="border: 1px solid #ccc; padding: 8px;">Order ID</th><th style="border: 1px solid #ccc; padding: 8px;">SMS Status</th></tr>';
+    echo '<table style="width:100%; border-collapse: collapse;">
+            <tr>
+                <th style="border: 1px solid #ccc; padding: 8px;">' . __('Customer Name', 'sms-confirmation-for-woocommerce') . '</th>
+                <th style="border: 1px solid #ccc; padding: 8px;">' . __('Phone Number', 'sms-confirmation-for-woocommerce') . '</th>
+                <th style="border: 1px solid #ccc; padding: 8px;">' . __('Order ID', 'sms-confirmation-for-woocommerce') . '</th>
+                <th style="border: 1px solid #ccc; padding: 8px;">' . __('SMS Status', 'sms-confirmation-for-woocommerce') . '</th>
+            </tr>';
 
     foreach ($orders as $order) {
-        $name = $order->get_billing_first_name() . ' ' . $order->get_billing_last_name();
-        $phone = $order->get_billing_phone();
-        $order_id = $order->get_id();
-        $sms_status = get_post_meta($order_id, '_sms_sent_status', true) ? 'Sent' : 'Not Sent';
-
-        echo '<tr>'; 
-        echo '<td style="border: 1px solid #ccc; padding: 8px;">' . esc_html($name) . '</td>';
-        echo '<td style="border: 1px solid #ccc; padding: 8px;">' . esc_html($phone) . '</td>';
-        echo '<td style="border: 1px solid #ccc; padding: 8px;">' . esc_html($order_id) . '</td>';
-        echo '<td style="border: 1px solid #ccc; padding: 8px;">' . esc_html($sms_status) . '</td>';
-        echo '</tr>';
+        echo '<tr>
+                <td style="border: 1px solid #ccc; padding: 8px;">' . esc_html($order->get_billing_first_name() . ' ' . $order->get_billing_last_name()) . '</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">' . esc_html($order->get_billing_phone()) . '</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">' . esc_html($order->get_id()) . '</td>
+                <td style="border: 1px solid #ccc; padding: 8px;">' . esc_html(get_post_meta($order->get_id(), '_sms_sent_status', true) ? __('Sent', 'sms-confirmation-for-woocommerce') : __('Not Sent', 'sms-confirmation-for-woocommerce')) . '</td>
+              </tr>';
     }
+
     echo '</table>';
 }
 
- 
+// Send SMS on completed order
 add_action('woocommerce_order_status_completed', 'wcsms_send_welcome_message');
 
 function wcsms_send_welcome_message($order_id) {
     $order = wc_get_order($order_id);
     $phone = $order->get_billing_phone();
 
-  
-    if (preg_match('/^(01|880)/', $phone) === 0) {
+    // Standardize phone format
+    if (!preg_match('/^\+?880/', $phone)) {
         $phone = '880' . ltrim($phone, '0');
     }
 
-    $message = "Welcome " . $order->get_billing_first_name() . "! Thank you for your order #{$order_id}. We appreciate your business!";
+    /* translators: 1: Customer Name, 2: Order ID */
+    $message = sprintf(
+        __('Welcome %1$s! Thank you for your order #%2$d. We appreciate your business!', 'sms-confirmation-for-woocommerce'),
+        $order->get_billing_first_name(),
+        $order_id
+    );
 
     $options = get_option('wcsms_settings');
-    $api_key = $options['wcsms_api_key'] ?? '7TohrUdBAvWAeEnb9OKIn9FA02WOQBI712b3DJG1'; // Default API key
+    $api_key = $options['wcsms_api_key'] ?? '';
 
     if (empty($api_key) || empty($phone)) {
-        error_log('SMS sending failed: Missing API key or phone number.');
+        wc_get_logger()->error('SMS sending failed: Missing API key or phone number.');
         update_post_meta($order_id, '_sms_sent_status', false);
         return;
     }
 
     $url = 'https://api.sms.net.bd/sendsms';
     $body = [
-        'api_key'   => $api_key,
-        'to'        => $phone,
-        'msg'       => $message
+        'api_key' => $api_key,
+        'to'      => $phone,
+        'msg'     => $message
     ];
 
     $response = wp_remote_post($url, [
-        'headers' => [
-            'Content-Type' => 'application/x-www-form-urlencoded'
-        ],
+        'headers' => ['Content-Type' => 'application/x-www-form-urlencoded'],
         'body'    => http_build_query($body),
         'timeout' => 30
     ]);
 
     if (is_wp_error($response)) {
-        error_log('SMS sending failed: ' . $response->get_error_message());
+        wc_get_logger()->error('SMS sending failed: ' . $response->get_error_message());
         update_post_meta($order_id, '_sms_sent_status', false);
     } else {
         $response_body = wp_remote_retrieve_body($response);
         if (strpos($response_body, 'success') !== false) {
             update_post_meta($order_id, '_sms_sent_status', true);
-            error_log('Welcome SMS sent successfully to ' . $phone . '. Response: ' . $response_body);
+            wc_get_logger()->info('Welcome SMS sent successfully to ' . $phone . '. Response: ' . $response_body);
         } else {
             update_post_meta($order_id, '_sms_sent_status', false);
-            error_log('SMS API response indicates failure: ' . $response_body);
+            wc_get_logger()->error('SMS API response indicates failure: ' . $response_body);
         }
     }
 }
