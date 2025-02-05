@@ -1,6 +1,6 @@
 # SMS Confirmation for WooCommerce
 
-**Contributors:** nayansms  
+**Contributors:** Nayan Ray  
 **Tags:** WooCommerce, SMS, Order Confirmation, Customer Notification, SMS Alert  
 **Requires at least:** 5.0  
 **Tested up to:** 6.4  
