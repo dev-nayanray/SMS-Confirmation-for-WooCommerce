@@ -1,6 +1,6 @@
 # SMS Confirmation for WooCommerce
 
-**Contributors:** Nayan Ray  
+**Contributors:** nayansms  
 **Tags:** WooCommerce, SMS, Order Confirmation, Customer Notification, SMS Alert  
 **Requires at least:** 5.0  
 **Tested up to:** 6.4  
@@ -54,30 +54,34 @@ Yes! The plugin uses **WooCommerce’s built-in logging system** for debugging.
 
 ## 📸 Screenshots  
 
-1. **Admin Settings Panel:** Configure SMS API key.
-
-![image](https://github.com/user-attachments/assets/b0022488-cb55-4e5f-98ac-a613783987c3)
-
-  
+1. **Admin Settings Panel:** Configure SMS API key.  
 2. **Order List View:** Check SMS status (Sent/Not Sent).  
-![image](https://github.com/user-attachments/assets/5007ac02-3b05-4c7f-9c27-15f316b19980)
 
 ---
 
 ## 📜 Changelog  
 
+### v1.0.1  
+- 🛠 Fixed text domain mismatch issue.  
+- 🔧 Improved phone number formatting.  
+- 📝 Enhanced error handling with WooCommerce logging.  
 
 ### v1.0.0  
 - 🚀 Initial release.  
 
+---
 
+## ⚡ Upgrade Notice  
+
+### v1.0.1  
+Fixes critical text domain and logging issues. Update is **recommended**.  
 
 ---
 
 ## 📞 Support  
 
 For support, please contact:  
-- 📩 [Nayan Ray Support](https://dev-nayanray.github.io/)  
+- 📩 [SMS.net.bd Support](https://www.sms.net.bd/support)  
 - 💬 [WordPress.org Support Forum](https://wordpress.org/support/plugin/sms-confirmation-for-woocommerce)  
 
 ---

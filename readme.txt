@@ -1,5 +1,5 @@
 === SMS Confirmation for WooCommerce ===
-Contributors: nayansms  
+Contributors: Nayan Ray  
 Tags: woocommerce, sms, order confirmation, customer notification, sms alert  
 Requires at least: 5.0  
 Tested up to: 6.7  
@@ -8,7 +8,7 @@ Stable tag: 1.0.0
 License: GPL-2.0+  
 License URI: https://www.gnu.org/licenses/gpl-2.0.html  
 
-Send SMS notifications to customers when their WooCommerce order is completed using SMS.net.bd. Ensure real-time updates and better customer engagement.
+Send SMS notifications when WooCommerce orders are completed using SMS.net.bd, ensuring real-time updates and better customer engagement.
 
 == Description ==
 
