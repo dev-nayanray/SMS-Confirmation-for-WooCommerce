@@ -1,14 +1,19 @@
 <?php
 /**
  * Plugin Name: SMS Confirmation for WooCommerce
- * Description: Sends an SMS confirmation to the customer when an order is completed using SMS.net.bd.
+ * Plugin URI: https://dev-nayanray.github.io/
+ * Description: A WooCommerce plugin that sends an SMS confirmation to customers when their order status is marked as completed. This plugin integrates with SMS.net.bd to ensure seamless SMS notifications, improving customer communication and order tracking.
  * Version: 1.0.0
  * Author: Nayan Ray
- * Text Domain: SMS Confirmation for WooCommerce
+ * Author URI: https://dev-nayanray.github.io/
+ * Text Domain: sms-confirmation-for-woocommerce
  * Domain Path: /languages
  * License: GPL-2.0+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * WC requires at least: 4.0
+ * WC tested up to: 7.0
  */
+
 
 // Exit if accessed directly.
 if (!defined('ABSPATH')) {
