@@ -6,7 +6,7 @@
  * Version: 1.0.0
  * Author: Nayan Ray
  * Author URI: https://dev-nayanray.github.io/
- * Text Domain: sSMS Confirmation for WooCommerce
+ * Text Domain: SMS Confirmation for WooCommerce
  * Domain Path: /languages
  * License: GPL-2.0+
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
